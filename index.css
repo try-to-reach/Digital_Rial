@@ -186,7 +186,6 @@
     right: 10.09%;
     bottom: 8.93%;
     left: 10.41%;
-    overflow: hidden;
 }
 
 .div3 {
@@ -275,13 +274,12 @@
     width: 3.125rem;
     position: absolute;
     margin: 0 !important;
-    top: 36.625rem;
+    top: 37rem;
     left: 11.313rem;
     height: 3.125rem;
     overflow: hidden;
     flex-shrink: 0;
-    z-index: 5;
-}
+    z-index: 5;}
 
 .rectangle-parent {
     position: absolute;
@@ -529,7 +527,7 @@
     }
 }
 
-@media only screen and (max-width: 412px) and (min-width: 408px) {
+@media only screen and (max-width: 413px) and (min-width: 408px) {
     .frame-group {
         position: absolute;
         top: -0.5rem;
@@ -544,7 +542,7 @@
     .wrapper1 {
         position: absolute;
         top: 22.375rem;
-        left: 1.938rem;
+        left: 2.938rem;
         width: 14.625rem;
         height: 5.188rem;
         overflow: hidden;
@@ -555,11 +553,12 @@
     .wrapper2 {
         position: absolute;
         top: 44.25rem;
-        left: 8.625rem;
+        left: 10.625rem;
         width: 10.188rem;
         height: 3.063rem;
         font-family: var(--font-saira);
     }
+
     .rectangle-parent {
         position: absolute;
         top: 11.875rem;
@@ -690,6 +689,7 @@
     .rectangle-parent {
         left: 0%;
     }
+
     .frame-group {
         position: absolute;
         top: -0.5rem;
@@ -731,7 +731,34 @@
     }
 }
 
-@media only screen and (width: 359px) {
+@media only screen and (min-width: 320px) and (max-width: 359px) {
+    .frame-item {
+        width: 93%;
+        position: absolute;
+        margin: 0 !important;
+        top: 0.813rem;
+        left: 0.75rem;
+        border-radius: var(--br-14xl) var(--br-14xl) 0px 0px;
+        background-color: var(--color-gray);
+        border-top: 3px solid var(--color-goldenrod);
+        border-right: 3px solid var(--color-goldenrod);
+        border-left: 3px solid var(--color-goldenrod);
+        box-sizing: border-box;
+        height: 40.813rem;
+        z-index: 0;
+    }
+    .frame-group {
+        position: absolute;
+        top: -0.5rem;
+        left: -1.112rem;
+        width: 20.813rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
+@media only screen and (min-width: 359px) and (max-width: 366px) {
 
     .frame-group {
         position: absolute;
@@ -744,11 +771,13 @@
         justify-content: flex-start;
     }
 }
+
 @media only screen and (min-width: 367px) and (max-width: 374px) {
-    
+
     .rectangle-parent {
         left: -0.43rem;
     }
+
     .frame-group {
         position: absolute;
         top: -0.5rem;
