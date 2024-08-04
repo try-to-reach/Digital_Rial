@@ -1,0 +1,35 @@
+
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+
+:root {
+    
+    /* fonts */
+    --font-saira: Saira;
+    --font-inika: Inika;
+    --font-vidaloka: Vidaloka;
+    --font-vazir: Vazir;
+    --font-irannastaliq: IranNastaliq;
+    --font-inria-sans: 'Inria Sans';
+    --font-porter-sans-block: 'Porter Sans Block';
+    
+    /* font sizes */
+    --font-size-3xl: 1.375rem;
+    --font-size-xs: 0.75rem;
+    --font-size-8xl: 1.688rem;
+    
+    /* Colors */
+    --color-gray: #1f2833;
+    --color-gainsboro: #d9d9d9;
+    --color-goldenrod: #ffd454;
+    
+    /* Paddings */
+    --padding-5xs: 0.5rem;
+    
+    /* Border radiuses */
+    --br-14xl: 33px;
+    
+}
