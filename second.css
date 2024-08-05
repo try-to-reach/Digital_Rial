@@ -35,8 +35,7 @@
     background-color: var(--color-gray);
 }
 
-.div1,
-.point-that-we-have {
+.div1, .point-that-we-have {
     position: absolute;
     top: 25px;
     left: 19px;
@@ -45,12 +44,12 @@
     align-items: center;
     justify-content: center;
     width: 108px;
+    font-size: 20px;
 }
-
 .div1 {
     top: 29px;
     left: 55%;
-    font-size: 47px;
+    font-size: 20px;
     width: 138px;
     height: 51px;
 }
@@ -371,7 +370,6 @@
     .div1 {
         top: 37px;
         left: 118px;
-        font-size: 47px;
         width: 138px;
         height: 51px;
     }
@@ -615,7 +613,6 @@
     .div1 {
         top: 29px;
         left: 154px;
-        font-size: 47px;
         width: 138px;
         height: 51px;
     }
