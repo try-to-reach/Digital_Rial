@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,7 +60,6 @@
             0% {
                 transform: rotate(0deg) translate(calc(var(--distance) * -1 * var(--dist-factor)), calc(var(--distance) * -1 * var(--dist-factor))) rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg) translate(calc(var(--distance) * -1 * var(--dist-factor)), calc(var(--distance) * -1 * var(--dist-factor))) rotate(-360deg);
             }
@@ -76,7 +74,7 @@
             font-family: var(--font-irannastaliq);
             position: absolute;
             color: #f44336;
-            font-size: 2rem;
+            font-size: 1.4rem;
         }
 
         .cub {
@@ -92,20 +90,16 @@
             0% {
                 transform: scaleX(0.2) scaleY(0.2) rotate(0deg);
             }
-
             60% {
                 transform: scaleX(1) scaleY(1);
             }
-
             100% {
                 transform: scaleX(0.2) scaleY(0.2) rotate(360deg);
             }
         }
     </style>
 </head>
-
 <body>
-
     <h1>
         <span>DIGITAL</span>
         <span>RIAL</span>
@@ -124,25 +118,20 @@
     <script>
         function isMobile() {
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-            // Check for mobile devices
-            if (/android/i.test(userAgent)) {
-                return true;
-            }
-            if (/iPhone|iPad|iPod/i.test(userAgent)) {
-                return true;
-            }
-
-            // Check for any other mobile OS
-            return /Mobile|Opera Mini|IEMobile|WPDesktop|Phone/i.test(userAgent);
+            return /android|iPhone|iPad|iPod|Mobile|Opera Mini|IEMobile|WPDesktop|Phone/i.test(userAgent);
         }
 
         function isTouchDevice() {
             return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
         }
 
+        function isScreenSizeSmall() {
+            // Use the device pixel ratio to infer screen size. Larger ratios often indicate mobile devices.
+            return window.devicePixelRatio && window.devicePixelRatio > 1.5;
+        }
+
         function redirectToIndexIfMobile() {
-            if (isMobile() || isTouchDevice()) {
+            if (isMobile() || isTouchDevice() || isScreenSizeSmall()) {
                 setTimeout(function () {
                     window.location.href = "first-page.html";
                 }, 5000);
@@ -154,5 +143,4 @@
         };
     </script>
 </body>
-
 </html>
