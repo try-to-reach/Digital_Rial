@@ -1,78 +1,158 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, width=device-width">
-    
-    
-<link rel="stylesheet" href="./second-global.css" />
-<link rel="stylesheet"  href="./second.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IranNastaliq:wght@400&display=swap" />
-    
-    
-    
-    </head>
-    <body>
-    
-    <div class="frame-parent">
-      <div class="frame-group">
-        <div class="frame-wrapper">
-          <div class="wrapper">
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, width=device-width">
+
+  <link rel="stylesheet" href="./second-global.css" />
+  <link rel="stylesheet" href="./second.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IranNastaliq:wght@400&display=swap" />
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const POINTS_KEY = 'yU4j2lM9Qb';
+      const POINT_PER_CLICK_LEVEL_KEY = 'pointPerClickLevel';
+      const ENERGY_RECHARGE_LEVEL_KEY = 'energyRechargeLevel';
+      const ENERGY_CAPACITY_LEVEL_KEY = 'energyCapacityLevel';
+
+      let userPoints = parseInt(localStorage.getItem(POINTS_KEY)) || 0;
+      let pointPerClickLevel = parseInt(localStorage.getItem(POINT_PER_CLICK_LEVEL_KEY)) || 1;
+      let energyRechargeLevel = parseInt(localStorage.getItem(ENERGY_RECHARGE_LEVEL_KEY)) || 1;
+      let energyCapacityLevel = parseInt(localStorage.getItem(ENERGY_CAPACITY_LEVEL_KEY)) || 1;
+
+      const userPointsDisplay = document.getElementById('user-points');
+      const pointPerClickCostDisplay = document.getElementById('point-per-click-cost');
+      const pointPerClickLevelDisplay = document.getElementById('point-per-click-level');
+      const energyRechargeCostDisplay = document.getElementById('energy-recharge-cost');
+      const energyRechargeLevelDisplay = document.getElementById('energy-recharge-level');
+      const energyCapacityCostDisplay = document.getElementById('energy-capacity-cost');
+      const energyCapacityLevelDisplay = document.getElementById('energy-capacity-level');
+
+      function calculatePointPerClick(level) {
+        return level;
+      }
+
+      function calculateEnergyRechargeRate(level) {
+        return level;
+      }
+
+      function calculateEnergyCapacity(level) {
+        return 300 + (level - 1) * 100;
+      }
+
+      function updateDisplays() {
+        userPointsDisplay.textContent = `${userPoints} `;
+        pointPerClickCostDisplay.textContent = `${100 * pointPerClickLevel} ریال`;
+        pointPerClickLevelDisplay.textContent = `لول ${pointPerClickLevel}`;
+        energyRechargeCostDisplay.textContent = `${200 * energyRechargeLevel} ریال`;
+        energyRechargeLevelDisplay.textContent = `لول ${energyRechargeLevel}`;
+        energyCapacityCostDisplay.textContent = `${500 * energyCapacityLevel} ریال`;
+        energyCapacityLevelDisplay.textContent = `لول ${energyCapacityLevel}`;
+      }
+
+      document.querySelectorAll('.upgrade-button').forEach(button => {
+        button.addEventListener('click', function () {
+          const upgradeType = this.getAttribute('data-upgrade');
+          if (upgradeType === 'point-per-click') {
+            const cost = 100 * pointPerClickLevel;
+            if (userPoints >= cost) {
+              userPoints -= cost;
+              pointPerClickLevel++;
+              localStorage.setItem(POINT_PER_CLICK_LEVEL_KEY, pointPerClickLevel);
+              // Use an additional flag to track completed upgrades
+              localStorage.setItem('pointPerClickUpgraded', 'true');
+            }
+          } else if (upgradeType === 'energy-recharge') {
+            const cost = 200 * energyRechargeLevel;
+            if (userPoints >= cost) {
+              userPoints -= cost;
+              energyRechargeLevel++;
+              localStorage.setItem(ENERGY_RECHARGE_LEVEL_KEY, energyRechargeLevel);
+              // Use an additional flag to track completed upgrades
+              localStorage.setItem('energyRechargeUpgraded', 'true');
+            }
+          } else if (upgradeType === 'energy-capacity') {
+            const cost = 500 * energyCapacityLevel;
+            if (userPoints >= cost) {
+              userPoints -= cost;
+              energyCapacityLevel++;
+              localStorage.setItem(ENERGY_CAPACITY_LEVEL_KEY, energyCapacityLevel);
+              // Use an additional flag to track completed upgrades
+              localStorage.setItem('energyCapacityUpgraded', 'true');
+            }
+          }
+          localStorage.setItem(POINTS_KEY, userPoints);
+          updateDisplays();
+        });
+      });
+
+      updateDisplays();
+    });
+
+  </script>
+</head>
+
+<body>
+  <div class="frame-parent">
+    <div class="frame-group">
+      <div class="frame-wrapper">
+        <div class="wrapper">
+          <a href="../index.html">
             <div class="div">بازگشت</div>
-          </div>
+          </a>
         </div>
-        <div class="frame-container">
-          <div class="point-that-we-have-parent">
-            <div class="point-that-we-have">0                   ریال </div>
-            <div class="div1">:ریال های  شما   </div>
-          </div>
+      </div>
+      <div class="frame-container">
+        <div class="point-that-we-have-parent">
+          <div class="point-that-we-have" id="user-points">3</div>
+          <p style="left: 12%;font-family: var(--font-irannastaliq);top: -26%;font-size: 42px;position: absolute;">ریال
+          </p>
+          <div class="div1">:ریال های شما</div>
         </div>
-        <div class="frame-div">
-          <div class="frame-parent1">
-            <div class="frame-parent2">
-              <div class="container">
-                <div class="div2">  100 ریال</div>
-              </div>
-              <div class="frame">
-                <div class="div3"> امتیاز در هر ضربه</div>
-              </div>
-              <div class="div4">لول 1</div>
-              <div class="level-up-for-point-in-each-cli">
-                <div class="div5">ارتقاء</div>
-              </div>
+      </div>
+      <div class="frame-div">
+        <div class="frame-parent1">
+          <div class="frame-parent2">
+            <div class="container">
+              <div class="div2" id="point-per-click-cost">100 ریال</div>
             </div>
-            <div class="frame-parent3">
-              <div class="container">
-                <div class="div2">  100 ریال</div>
-              </div>
-              <div class="wrapper2">
-                <div class="div7">سرعت پر شدن مخزن</div>
-              </div>
-              <div class="div4">لول 1</div>
-              <div class="level-up-for-speed-of-maaking-">
-                <div class="div5">ارتقاء</div>
-              </div>
+            <div class="frame">
+              <div class="div3">امتیاز در هر ضربه</div>
             </div>
-            <div class="frame-parent4">
-              <div class="wrapper3">
-                <div class="div10">  100 ریال</div>
-              </div>
-              <div class="wrapper2">
-                <div class="div7">مقدار گنجایش مخزن</div>
-              </div>
-              <div class="div12">لول 1</div>
-              <div class="level-up-for-gonjayesh">
-                <div class="div5">ارتقاء</div>
-              </div>
+            <div class="div4" id="point-per-click-level">لول 1</div>
+            <div class="level-up-for-point-in-each-cli">
+              <div class="div5 upgrade-button" data-upgrade="point-per-click">ارتقاء</div>
+            </div>
+          </div>
+          <div class="frame-parent3">
+            <div class="container">
+              <div class="div2" id="energy-recharge-cost">200 ریال</div>
+            </div>
+            <div class="wrapper2">
+              <div class="div7">سرعت پر شدن مخزن</div>
+            </div>
+            <div class="div4" id="energy-recharge-level">لول 1</div>
+            <div class="level-up-for-speed-of-maaking-">
+              <div class="div5 upgrade-button" data-upgrade="energy-recharge">ارتقاء</div>
+            </div>
+          </div>
+          <div class="frame-parent4">
+            <div class="wrapper3">
+              <div class="div10" id="energy-capacity-cost">500 ریال</div>
+            </div>
+            <div class="wrapper2">
+              <div class="div7">مقدار گنجایش مخزن</div>
+            </div>
+            <div class="div12" id="energy-capacity-level">لول 1</div>
+            <div class="level-up-for-gonjayesh">
+              <div class="div5 upgrade-button" data-upgrade="energy-capacity">ارتقاء</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-    
-    
-    
-    </body>
-  </html>
+  </div>
+</body>
+
+</html>

@@ -7,6 +7,7 @@
     justify-content: center;
     width: 126px;
     height: 27px;
+    color: #d9d9d9;
 }
 
 .frame-wrapper,
@@ -16,7 +17,7 @@
 
 .wrapper {
     top: 7px;
-    left: 9px;
+    left: -4px;
     border-radius: var(--br-mid);
     border: 3px solid var(--color-goldenrod);
     box-sizing: border-box;
@@ -37,8 +38,8 @@
 
 .div1, .point-that-we-have {
     position: absolute;
-    top: 25px;
-    left: 19px;
+    top: 35px;
+    left: 56px;
     white-space: pre-wrap;
     display: flex;
     align-items: center;
@@ -49,7 +50,7 @@
 .div1 {
     top: 29px;
     left: 55%;
-    font-size: 20px;
+    font-size: 30px;
     width: 138px;
     height: 51px;
 }
@@ -415,16 +416,7 @@
 }
 
 @media only screen and (max-width: 413px) and (min-width: 408px) {
-    .frame-group {
-        position: absolute;
-        top: -0.5rem;
-        left: 0.3rem;
-        width: 20.813rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-    }
+    
 
     .wrapper1 {
         position: absolute;
@@ -437,14 +429,7 @@
         font-family: var(--font-inika);
     }
 
-    .wrapper2 {
-        position: absolute;
-        top: 44.25rem;
-        left: 10.625rem;
-        width: 10.188rem;
-        height: 3.063rem;
-        font-family: var(--font-saira);
-    }
+    
 
     .rectangle-parent {
         position: absolute;
@@ -756,3 +741,14 @@
         color: var(--color-black);
     }
 }
+@media only screen and (min-width:408px) and (max-width: 412px) {
+.frame-group {
+    position: absolute;
+    top: 1.5rem;
+    left: 2.3rem;
+    width: 20.813rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}}
