@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="second-global.css">
+    <style>
+        body {
+            position: relative;
+            background: radial-gradient(circle at center, #FFD700 0%, #FDD835 8.1%, #FBBC05 15.5%, #F9A825 22.5%, #F57F17 29%, #F4B400 35.3%, #FBC02D 41.2%, #FFEB3B 47.1%, #FFF176 52.9%, #FFEE58 58.8%, #FFF59D 64.7%, #FFF9C4 71%, #FFE082 84.5%, #FFD54F 91.9%, #FFCA28 100%) fixed;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            height: 400px;
+        }
+
+        h1:nth-child(1) {
+            top: 60%;
+            font-family: monospace;
+            font-weight: lighter;
+            font-size: 2.5rem;
+            color: white;
+            transition: all 1s;
+            animation: anim 4s linear infinite;
+            position: relative;
+            z-index: 2;
+            --distance: .01em;
+            --dist-factor: 6;
+        }
+
+        h1:nth-child(2) {
+            top: 60%;
+            font-weight: lighter;
+            font-family: monospace;
+            font-size: 2.5rem;
+            color: #db73b0;
+            transition: all 1s;
+            animation: anim 3s linear infinite;
+            position: absolute;
+            --distance: .014em;
+            --dist-factor: 2;
+        }
+
+        h1:nth-child(3) {
+            top: 60%;
+            font-weight: lighter;
+            font-family: monospace;
+            font-size: 2.5rem;
+            color: #73c5c1;
+            transition: all 3s;
+            animation: anim 2s linear infinite;
+            position: absolute;
+            --distance: .012em;
+            --dist-factor: 1.5;
+        }
+
+        @keyframes anim {
+            0% {
+                transform: rotate(0deg) translate(calc(var(--distance) * -1 * var(--dist-factor)), calc(var(--distance) * -1 * var(--dist-factor))) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translate(calc(var(--distance) * -1 * var(--dist-factor)), calc(var(--distance) * -1 * var(--dist-factor))) rotate(-360deg);
+            }
+        }
+
+        @font-face {
+            font-family: yekan;
+            src: url(./BYekan+\ Bold.ttf);
+        }
+
+        h2 {
+            font-family: var(--font-irannastaliq);
+            position: absolute;
+            color: #f44336;
+            font-size: 2rem;
+        }
+
+        .cub {
+            top: 400px;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            background: #0B5D57 radial-gradient(circle at center, #FFD700 0%, #FDD835 8.1%, #FBBC05 15.5%, #F9A825 22.5%, #F57F17 29%, #F4B400 35.3%, #FBC02D 41.2%, #FFEB3B 47.1%, #FFF176 52.9%, #FFEE58 58.8%, #FFF59D 64.7%, #FFF9C4 71%, #FFE082 84.5%, #FFD54F 91.9%, #FFCA28 100%);
+            animation: anim1 3s linear infinite;
+        }
+
+        @keyframes anim1 {
+            0% {
+                transform: scaleX(0.2) scaleY(0.2) rotate(0deg);
+            }
+
+            60% {
+                transform: scaleX(1) scaleY(1);
+            }
+
+            100% {
+                transform: scaleX(0.2) scaleY(0.2) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        <span>DIGITAL</span>
+        <span>RIAL</span>
+    </h1>
+    <h1>
+        <span>DIGITAL</span>
+        <span>RIAL</span>
+    </h1>
+    <h1>
+        <span>DIGITAL</span>
+        <span>RIAL</span>
+    </h1>
+    <h2>خوش اومدید به دیجیتال ریال !</h2>
+    <div class="cub"></div>
+
+    <script>
+        function isMobile() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Check for mobile devices
+            if (/android/i.test(userAgent)) {
+                return true;
+            }
+            if (/iPhone|iPad|iPod/i.test(userAgent)) {
+                return true;
+            }
+
+            // Check for any other mobile OS
+            return /Mobile|Opera Mini|IEMobile|WPDesktop|Phone/i.test(userAgent);
+        }
+
+        function isTouchDevice() {
+            return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+        }
+
+        function redirectToIndexIfMobile() {
+            if (isMobile() || isTouchDevice()) {
+                setTimeout(function () {
+                    window.location.href = "first-page.html";
+                }, 5000);
+            }
+        }
+
+        window.onload = function () {
+            redirectToIndexIfMobile();
+        };
+    </script>
+</body>
+
+</html>
