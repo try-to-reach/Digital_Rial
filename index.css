@@ -85,11 +85,11 @@
 .div {
     position: absolute;
     top: 9.875rem;
-    left: 6.5rem;
+    left: 7.5rem;
     font-size: var(--font-size-xs);
     letter-spacing: 0.05em;
     line-height: 1.688rem;
-    font-family: var(--font-inria-sans);
+    font-family: var(--font-vazir);
     color: var(--color-goldenrod);
     display: inline-block;
     width: 10rem;
