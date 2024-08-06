@@ -330,7 +330,8 @@
 .p {
     margin: 0;
     position: absolute;
-    left: 59%;
+    left: 9%;
+    top: -19%;
 }
 
 .div5 {
@@ -394,7 +395,7 @@
 .wrapper1 {
     position: absolute;
     top: 22.375rem;
-    left: 4.938rem;
+    left: 2rem;
     width: 14.625rem;
     height: 5.188rem;
     overflow: hidden;
@@ -727,7 +728,7 @@
     .wrapper1 {
         position: absolute;
         top: 22.375rem;
-        left: 3rem;
+        left: 2rem;
         width: 14.625rem;
         height: 5.188rem;
         overflow: hidden;
