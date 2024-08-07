@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         left: 50%;
         transform: translate(-50%, -50%);
         width: 80%;
-        height: 40%;
+        height: height: 58%;;
         background-color: white;
         z-index: 1001;
         display: none;
