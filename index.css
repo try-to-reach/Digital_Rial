@@ -282,11 +282,13 @@
     height: 3.125rem;
     overflow: hidden;
     flex-shrink: 0;
-    z-index: 5;}
+    z-index: 5;
+}
 
 .rectangle-parent {
     position: absolute;
     top: 11.875rem;
+    left: 2%;
     box-shadow: 0px 4px 100px -8px #ffd454;
     border-radius: 51px;
     background-color: var(--color-gray);
@@ -353,6 +355,7 @@
     font-size: 20px;
     /* font-family: var(--font-irannastaliq); */
 }
+
 .frame-group {
     position: absolute;
     top: -0.5rem;
@@ -752,6 +755,7 @@
         height: 40.813rem;
         z-index: 0;
     }
+
     .frame-group {
         position: absolute;
         top: -0.5rem;
@@ -763,6 +767,7 @@
         justify-content: flex-start;
     }
 }
+
 @media only screen and (min-width: 359px) and (max-width: 366px) {
 
     .frame-group {
@@ -780,7 +785,7 @@
 @media only screen and (min-width: 367px) and (max-width: 376px) {
 
     .rectangle-parent {
-        left: -0.43rem;
+        left: 0rem;
     }
 
     .frame-group {
