@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const ENERGY_KEY = 'pL8k2sN1Wf';
   const ENERGY_CAPACITY_KEY = 'rZ5j4nT8Hl';
   const ENERGY_RECHARGE_RATE_KEY = 'mP3f9xL7Zs';
+  const LAST_VISIT_KEY = 'lastVisitTime';
 
   let userPoints = parseInt(localStorage.getItem(POINTS_KEY)) || 0;
   let pointPerClickLevel = parseInt(localStorage.getItem(POINT_PER_CLICK_LEVEL_KEY)) || 1;
@@ -48,6 +49,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function rechargeEnergyOffline() {
+    const lastVisit = parseInt(localStorage.getItem(LAST_VISIT_KEY)) || Date.now();
+    const currentTime = Date.now();
+    const timeDiff = currentTime - lastVisit;
+    const rechargeAmount = Math.floor(timeDiff / 5000) * energyRechargeRate;
+
+    energy = Math.min(energy + rechargeAmount, energyCapacity);
+    localStorage.setItem(ENERGY_KEY, energy);
+    localStorage.setItem(LAST_VISIT_KEY, currentTime);
+  }
+
   clickableImage.addEventListener('click', function () {
     if (energy > 0) {
       const pointsEarned = calculatePointPerClick(pointPerClickLevel);
@@ -56,9 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.setItem(POINTS_KEY, userPoints);
       localStorage.setItem(ENERGY_KEY, energy);
       updateDisplays();
-    } else {
-      showError('انرژی کافی نیست');
-    }
+    } 
   });
 
   setInterval(rechargeEnergy, 5000);
@@ -68,5 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
   localStorage.setItem(ENERGY_CAPACITY_KEY, energyCapacity);
   localStorage.setItem(ENERGY_RECHARGE_RATE_KEY, energyRechargeRate);
 
+  // Recharge energy for offline time when the page loads
+  rechargeEnergyOffline();
   updateDisplays();
 });
