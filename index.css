@@ -287,7 +287,6 @@
 .rectangle-parent {
     position: absolute;
     top: 11.875rem;
-    left: 0.5rem;
     box-shadow: 0px 4px 100px -8px #ffd454;
     border-radius: 51px;
     background-color: var(--color-gray);
