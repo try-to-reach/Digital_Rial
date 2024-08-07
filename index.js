@@ -1,84 +1,76 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const POINTS_KEY = 'yU4j2lM9Qb';
-  const POINT_PER_CLICK_LEVEL_KEY = 'pointPerClickLevel';
-  const ENERGY_RECHARGE_LEVEL_KEY = 'energyRechargeLevel';
-  const ENERGY_CAPACITY_LEVEL_KEY = 'energyCapacityLevel';
-  const ENERGY_KEY = 'pL8k2sN1Wf';
-  const ENERGY_CAPACITY_KEY = 'rZ5j4nT8Hl';
-  const ENERGY_RECHARGE_RATE_KEY = 'mP3f9xL7Zs';
-  const LAST_VISIT_KEY = 'lastVisitTime';
+document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
 
-  let userPoints = parseInt(localStorage.getItem(POINTS_KEY)) || 0;
-  let pointPerClickLevel = parseInt(localStorage.getItem(POINT_PER_CLICK_LEVEL_KEY)) || 1;
-  let energyRechargeLevel = parseInt(localStorage.getItem(ENERGY_RECHARGE_LEVEL_KEY)) || 1;
-  let energyCapacityLevel = parseInt(localStorage.getItem(ENERGY_CAPACITY_LEVEL_KEY)) || 1;
-  let energy = parseInt(localStorage.getItem(ENERGY_KEY)) || 300;
-  let energyCapacity = parseInt(localStorage.getItem(ENERGY_CAPACITY_KEY)) || 300;
-  let energyRechargeRate = parseInt(localStorage.getItem(ENERGY_RECHARGE_RATE_KEY)) || 1;
 
-  const pointsDisplay = document.querySelector('.point');
-  const energyDisplay = document.querySelector('.energy');
-  const clickableImage = document.querySelector('.clickable');
-  const leagueImage = document.querySelector('.img-leage');
 
-  function calculatePointPerClick(level) {
-    return level;
-  }
 
-  function calculateEnergyRechargeRate(level) {
-    return level;
-  }
 
-  function calculateEnergyCapacity(level) {
-    return 300 + (level - 1) * 100;
-  }
+// document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
 
-  function updateDisplays() {
-    pointsDisplay.textContent = `${userPoints}`;
-    energyDisplay.textContent = `${energy} / ${energyCapacity}`;
-  }
 
-  function rechargeEnergy() {
-    if (energy < energyCapacity) {
-      energy += energyRechargeRate;
-      if (energy > energyCapacity) {
-        energy = energyCapacity;
-      }
-      localStorage.setItem(ENERGY_KEY, energy);
-      updateDisplays();
-    }
-  }
 
-  function rechargeEnergyOffline() {
-    const lastVisit = parseInt(localStorage.getItem(LAST_VISIT_KEY)) || Date.now();
-    const currentTime = Date.now();
-    const timeDiff = currentTime - lastVisit;
-    const rechargeAmount = Math.floor(timeDiff / 5000) * energyRechargeRate;
 
-    energy = Math.min(energy + rechargeAmount, energyCapacity);
-    localStorage.setItem(ENERGY_KEY, energy);
-    localStorage.setItem(LAST_VISIT_KEY, currentTime);
-  }
 
-  clickableImage.addEventListener('click', function () {
-    if (energy > 0) {
-      const pointsEarned = calculatePointPerClick(pointPerClickLevel);
-      userPoints += pointsEarned;
-      energy -= pointsEarned;
-      localStorage.setItem(POINTS_KEY, userPoints);
-      localStorage.setItem(ENERGY_KEY, energy);
-      updateDisplays();
-    } 
-  });
 
-  setInterval(rechargeEnergy, 5000);
 
-  energyCapacity = calculateEnergyCapacity(energyCapacityLevel);
-  energyRechargeRate = calculateEnergyRechargeRate(energyRechargeLevel);
-  localStorage.setItem(ENERGY_CAPACITY_KEY, energyCapacity);
-  localStorage.setItem(ENERGY_RECHARGE_RATE_KEY, energyRechargeRate);
 
-  // Recharge energy for offline time when the page loads
-  rechargeEnergyOffline();
-  updateDisplays();
-});
+
+// document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
+
+
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
+
+
+
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () { const a = 'yU4j2lM9Qb', b = 'pointPerClickLevel', c = 'energyRechargeLevel', d = 'energyCapacityLevel', e = 'pL8k2sN1Wf', f = 'rZ5j4nT8Hl', g = 'mP3f9xL7Zs', h = 'lastVisitTime'; let i = parseInt(localStorage.getItem(a)) || 0, j = parseInt(localStorage.getItem(b)) || 1, k = parseInt(localStorage.getItem(c)) || 1, l = parseInt(localStorage.getItem(d)) || 1, m = parseInt(localStorage.getItem(e)) || 300, n = parseInt(localStorage.getItem(f)) || 300, o = parseInt(localStorage.getItem(g)) || 1; const p = document.querySelector('.point'), q = document.querySelector('.energy'), r = document.querySelector('.clickable'), s = document.querySelector('.img-leage'); function t(u) { return u; } function v(w) { return w; } function x(y) { return 300 + (y - 1) * 100; } function z() { p.textContent = `${i}`; q.textContent = `${m} / ${n}`; } function A() { if (m < n) { m += o; if (m > n) { m = n; } localStorage.setItem(e, m); z(); } } function B() { const C = parseInt(localStorage.getItem(h)) || Date.now(), D = Date.now(), E = D - C, F = Math.floor(E / 5000) * o; m = Math.min(m + F, n); localStorage.setItem(e, m); localStorage.setItem(h, D); } r.addEventListener('click', function () { if (m > 0) { const G = t(j); i += G; m -= G; localStorage.setItem(a, i); localStorage.setItem(e, m); z(); } }); setInterval(A, 5000); n = x(l); o = v(k); localStorage.setItem(f, n); localStorage.setItem(g, o); B(); z(); });
